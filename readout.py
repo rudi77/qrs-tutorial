@@ -27,4 +27,4 @@ def train(self, dataset):
         # Save results
         saver = tf.train.Saver()
         saver.save(sess, self.savepath)
-        print 'Trained model saved to: ', self.savepath
+        print('Trained model saved to: ', self.savepath)

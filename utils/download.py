@@ -1,6 +1,6 @@
 import os
-import urllib2
-import requests
+import urllib.request
+
 from tqdm import tqdm
 from bs4 import BeautifulSoup as BSoup
 
@@ -18,7 +18,7 @@ def download_mitdb():
     savename = savedir + '/{}.{}'
 
     # Find all interesting files on that site:
-    soup = BSoup(urllib2.urlopen(the_path).read())
+    soup = BSoup(urllib.request.urlopen(the_path).read())
 
     # Find all links pointing to .dat files
     hrefs = []
@@ -34,14 +34,14 @@ def download_mitdb():
     for data_id in hrefs:
         for ext in extensions:
             webpath = down_path.format(data_id, ext)
-            datafile = urllib2.urlopen(webpath)
+            datafile = urllib.request.urlopen(webpath)
 
             # Save locally
             filepath = savename.format(data_id, ext)
             with open(filepath, 'wb') as out:
                 out.write(datafile.read())
 
-    print 'Downloaded {} data files'.format(len(hrefs))
+    print('Downloaded {} data files'.format(len(hrefs)))
 
 if __name__ == '__main__':
     download_mitdb()

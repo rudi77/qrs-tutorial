@@ -150,7 +150,7 @@ class AbstractNet(object):
                         vloss, vsum = sess.run(vops, vdic)
                         self.t_writer.add_summary(vsum, it)
                         dbg = 'Eon: {}, Epoch: {}, loss: {}, valid: {}'
-                        print dbg.format(en, et, loss, vloss)
+                        print(dbg.format(en, et, loss, vloss))
 
                     if et % 100 == 0:
                         self.produce_plots()
@@ -158,7 +158,7 @@ class AbstractNet(object):
             # Save results
             saver = tf.train.Saver()
             saver.save(sess, self.savepath)
-            print 'Trained model saved to: ', self.savepath
+            print('Trained model saved to: ', self.savepath)
 
     def produce_plots(self):
         """ Make some plots """
@@ -219,9 +219,9 @@ class AbstractNet(object):
 
         return score
 
-    def make_graph():
+    def make_graph(self):
         """ Please implement me """
-        print 'Please implement the make_graph() method'
+        print('Please implement the make_graph() method')
 
 class ConvEncoder(AbstractNet):
     """ Simplest class to solve the problem """
@@ -270,7 +270,7 @@ class ConvEncoder(AbstractNet):
 
         out = tf.nn.tanh(out)
 
-        print 'Conv:', out.get_shape().as_list()
+        print('Conv:', out.get_shape().as_list())
 
         return out
 
@@ -311,7 +311,7 @@ class ConvEncoder(AbstractNet):
 
         out += bias
 
-        print 'DeConv:', out.get_shape().as_list()
+        print('DeConv:', out.get_shape().as_list())
 
         return out
                                      
@@ -338,7 +338,7 @@ class ConvEncoder(AbstractNet):
         # Connection with the input data
         in_shape = [None, self.n_input]
         self._input = tf.placeholder(tf.float32, in_shape)
-        print 'Input:', in_shape
+        print('Input:', in_shape)
 
         # Shrink down
         with tf.name_scope('conv1'):
@@ -385,7 +385,7 @@ class ConvEncoder(AbstractNet):
                            width = 128,
                            stride = 1)
 
-        print 'Stretched:', r2.get_shape().as_list()
+        print('Stretched:', r2.get_shape().as_list())
 
         # Connect to the ground truth
         with tf.name_scope('inference'):
@@ -405,7 +405,7 @@ class FIREncoder(ConvEncoder):
         # Connection with the input data
         in_shape = [None, self.n_input]
         self._input = tf.placeholder(tf.float32, in_shape)
-        print 'Input:', in_shape
+        print('Input:', in_shape)
 
         # Shrink down
         with tf.name_scope('conv1'):

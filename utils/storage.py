@@ -18,15 +18,15 @@ class Dataset(object):
 
         # Prepare randomized access to training data ...
         self.nof_examples = len(self.training_set['signals'])
-        print 'Dataset with {} trianing examples'.format(self.nof_examples)
+        print('Dataset with {} trianing examples'.format(self.nof_examples))
 
         # ... and validation ...
         self.nof_validation = len(self.validation_set['signals'])
-        print 'Dataset with {} validation examples'.format(self.nof_validation)
+        print('Dataset with {} validation examples'.format(self.nof_validation))
 
         # ... and test
         self.nof_test = len(self.test_set['signals'])
-        print 'Dataset with {} test examples'.format(self.nof_test)
+        print('Dataset with {} test examples'.format(self.nof_test))
 
         self.ids = np.arange(self.nof_examples)
         np.random.shuffle(self.ids)
@@ -43,7 +43,7 @@ class Dataset(object):
         if self.index_in_epoch > self.nof_examples:
         # Finished epoch
             self.epochs_completed += 1
-            print 'Data epochs done:', self.epochs_completed
+            print('Data epochs done:', self.epochs_completed)
 
             # Shuffle the data accessing iterators (again)
             np.random.shuffle(self.ids)

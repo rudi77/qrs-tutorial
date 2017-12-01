@@ -8,7 +8,7 @@ def clean_path(path):
     for file in paths:
         os.remove(file)
     
-    print 'Cleaned directory:', path
+    print('Cleaned directory:', path)
 
 def make_spoko_mnist():
     """ Convert mnist data to more familiar structure """
@@ -41,5 +41,5 @@ def make_spoko_mnist():
         t_group.create_dataset('signals', data = t_signals)
         t_group.create_dataset('labels',  data = t_labels)
 
-    print "Saved mnist data to:", savepath
+    print("Saved mnist data to:", savepath)
 

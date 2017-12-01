@@ -12,9 +12,9 @@ def get_records():
     """ Get paths for data in data/mit/ directory """
     # Download if doesn't exist
     if not os.path.isdir('data/mitdb'):
-        print 'Downloading the mitdb ecg database, please wait'
+        print('Downloading the mitdb ecg database, please wait')
         ud.download_mitdb()
-        print 'Download finished'
+        print('Download finished')
 
     # There are 3 files for each record
     # *.atr is one of them
@@ -40,10 +40,10 @@ def beat_annotations(annotation):
     """ Get rid of non-beat markers """
     # Declare beat types
     good = good_types()
-    ids = np.in1d(annotation.anntype, good)
+    ids = np.in1d(annotation.symbol, good)
 
     # We want to know only the positions
-    beats = annotation.annsamp[ids]
+    beats = annotation.sample[ids]
 
     return beats
 
@@ -80,7 +80,7 @@ def make_dataset(records, width, savepath):
 
     # Iterate files
     for path in records:
-        print 'Processing file:', path
+        print('Processing file:', path)
         record = wf.rdsamp(path)
         annotations = wf.rdann(path, 'atr')
 

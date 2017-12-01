@@ -35,7 +35,7 @@ def main():
     # Calculate loss
     loss = model.consume(si, la)
     
-    print 'Validation loss', loss
+    print('Validation loss', loss)
 
     # Show some results
     score = model.process(si)

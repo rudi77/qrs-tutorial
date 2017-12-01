@@ -11,7 +11,7 @@ def show_path(path):
     annotation = wf.rdann(path, 'atr')
     data = record.p_signals
     cha = data[:, 0]
-    print 'Channel type:', record.signame[0]
+    print('Channel type:', record.signame[0])
     times = np.arange(len(cha), dtype = float)
     times /= record.fs
     plt.plot(times, cha)
@@ -71,7 +71,7 @@ def show_objective():
     ann = wf.rdann(path, 'atr')
 
     chid = 0
-    print 'Channel:', record.signame[chid]
+    print('Channel:', record.signame[chid])
 
     cha = record.p_signals[:, chid]
 
@@ -84,7 +84,7 @@ def show_objective():
     # Extract the annotations for that fragment
     where = (sta < ann.annsamp) & (ann.annsamp < end)
     samples = ann.annsamp[where] - sta
-    print samples
+    print(samples)
 
     # Prepare dirac-comb type of labels
     qrs_values = np.zeros_like(times)
@@ -128,8 +128,8 @@ def show_objective_part2():
     ann = wf.rdann(path, 'atr')
 
     chid = 0
-    print 'File:', path
-    print 'Channel:', record.signame[chid]
+    print('File:', path)
+    print('Channel:', record.signame[chid])
 
     cha = record.p_signals[:, chid]
 
@@ -142,7 +142,7 @@ def show_objective_part2():
     # Extract the annotations for that fragment
     where = (sta < ann.annsamp) & (ann.annsamp < end)
     samples = ann.annsamp[where] - sta
-    print samples
+    print(samples)
 
     # Prepare dirac-comb type of labels
     qrs_values = np.zeros_like(times)
