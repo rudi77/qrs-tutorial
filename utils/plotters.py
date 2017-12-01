@@ -24,15 +24,15 @@ def show_annotations(path):
     annotation = wf.rdann(path, 'atr')
 
     # Get data and annotations for the first 2000 samples
-    howmany = 2000
+    howmany = 12000
     channel = record.p_signals[:howmany, 0]
 
     # Extract all of the annotation related infromation
-    where = annotation.annsamp < howmany
-    samp = annotation.annsamp[where]
+    where = annotation.sample < howmany
+    samp = annotation.sample[where]
 
     # Convert to numpy.array to get fancy indexing access
-    types = np.array(annotation.anntype)
+    types = np.array(annotation.symbol)
     types = types[where]
 
     times = np.arange(howmany, dtype = 'float') / record.fs
@@ -58,7 +58,7 @@ def show_annotations(path):
         a_txt = types[it]
         plt.annotate(a_txt, xy = (xa, ya))
 
-    plt.xlim([0, 4])
+    plt.xlim([0, 24])
     plt.xlabel('Time [s]')
     plt.show()
 
@@ -82,8 +82,8 @@ def show_objective():
     times /= record.fs
 
     # Extract the annotations for that fragment
-    where = (sta < ann.annsamp) & (ann.annsamp < end)
-    samples = ann.annsamp[where] - sta
+    where = (sta < ann.sample) & (ann.sample < end)
+    samples = ann.sample[where] - sta
     print(samples)
 
     # Prepare dirac-comb type of labels
@@ -140,8 +140,8 @@ def show_objective_part2():
     times /= record.fs
 
     # Extract the annotations for that fragment
-    where = (sta < ann.annsamp) & (ann.annsamp < end)
-    samples = ann.annsamp[where] - sta
+    where = (sta < ann.sample) & (ann.sample < end)
+    samples = ann.sample[where] - sta
     print(samples)
 
     # Prepare dirac-comb type of labels
